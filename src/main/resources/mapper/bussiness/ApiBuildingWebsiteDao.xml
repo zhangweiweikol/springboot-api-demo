@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.modules.bussiness.dao.ApiBuildingWebsiteDao">
+
+    <resultMap type="com.demo.modules.bussiness.entity.ApiBuildingWebsite" id="ApiBuildingWebsiteMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="totalcount" column="totalcount" jdbcType="VARCHAR"/>
+        <result property="stopname" column="stopname" jdbcType="VARCHAR"/>
+        <result property="baidumapx" column="baidumapx" jdbcType="VARCHAR"/>
+        <result property="baidumapy" column="baidumapy" jdbcType="VARCHAR"/>
+        <result property="isstop" column="isstop" jdbcType="VARCHAR"/>
+        <result property="buildingnum" column="buildingnum" jdbcType="INTEGER"/>
+        <result property="projname" column="projname" jdbcType="VARCHAR"/>
+        <result property="hbprojectname" column="hbprojectname" jdbcType="VARCHAR"/>
+        <result property="projectaddress" column="projectaddress" jdbcType="VARCHAR"/>
+        <result property="areaname" column="areaname" jdbcType="VARCHAR"/>
+        <result property="contractorcontactphone" column="contractorcontactphone" jdbcType="VARCHAR"/>
+        <result property="contractor" column="contractor" jdbcType="VARCHAR"/>
+        <result property="contractorcontact" column="contractorcontact" jdbcType="VARCHAR"/>
+        <result property="buildname" column="buildname" jdbcType="VARCHAR"/>
+        <result property="pmanager" column="pmanager" jdbcType="VARCHAR"/>
+        <result property="pmanagertel" column="pmanagertel" jdbcType="VARCHAR"/>
+        <result property="supervise" column="supervise" jdbcType="VARCHAR"/>
+        <result property="supervisecontact" column="supervisecontact" jdbcType="VARCHAR"/>
+        <result property="supervisecontactphone" column="supervisecontactphone" jdbcType="VARCHAR"/>
+        <result property="hbtype" column="hbtype" jdbcType="VARCHAR"/>
+        <result property="projcode" column="projcode" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApiBuildingWebsiteMap">
+        select
+        id, totalcount, stopname, baidumapx, baidumapy, isstop, buildingnum, projname, hbprojectname, projectaddress,
+        areaname, contractorcontactphone, contractor, contractorcontact, buildname, pmanager, pmanagertel, supervise,
+        supervisecontact, supervisecontactphone, hbtype, projcode, create_time
+        from api_building_website
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="totalcount != null and totalcount != ''">
+                and totalcount = #{totalcount}
+            </if>
+            <if test="stopname != null and stopname != ''">
+                and stopname = #{stopname}
+            </if>
+            <if test="baidumapx != null and baidumapx != ''">
+                and baidumapx = #{baidumapx}
+            </if>
+            <if test="baidumapy != null and baidumapy != ''">
+                and baidumapy = #{baidumapy}
+            </if>
+            <if test="isstop != null and isstop != ''">
+                and isstop = #{isstop}
+            </if>
+            <if test="buildingnum != null">
+                and buildingnum = #{buildingnum}
+            </if>
+            <if test="projname != null and projname != ''">
+                and projname = #{projname}
+            </if>
+            <if test="hbprojectname != null and hbprojectname != ''">
+                and hbprojectname = #{hbprojectname}
+            </if>
+            <if test="projectaddress != null and projectaddress != ''">
+                and projectaddress = #{projectaddress}
+            </if>
+            <if test="areaname != null and areaname != ''">
+                and areaname = #{areaname}
+            </if>
+            <if test="contractorcontactphone != null and contractorcontactphone != ''">
+                and contractorcontactphone = #{contractorcontactphone}
+            </if>
+            <if test="contractor != null and contractor != ''">
+                and contractor = #{contractor}
+            </if>
+            <if test="contractorcontact != null and contractorcontact != ''">
+                and contractorcontact = #{contractorcontact}
+            </if>
+            <if test="buildname != null and buildname != ''">
+                and buildname = #{buildname}
+            </if>
+            <if test="pmanager != null and pmanager != ''">
+                and pmanager = #{pmanager}
+            </if>
+            <if test="pmanagertel != null and pmanagertel != ''">
+                and pmanagertel = #{pmanagertel}
+            </if>
+            <if test="supervise != null and supervise != ''">
+                and supervise = #{supervise}
+            </if>
+            <if test="supervisecontact != null and supervisecontact != ''">
+                and supervisecontact = #{supervisecontact}
+            </if>
+            <if test="supervisecontactphone != null and supervisecontactphone != ''">
+                and supervisecontactphone = #{supervisecontactphone}
+            </if>
+            <if test="hbtype != null and hbtype != ''">
+                and hbtype = #{hbtype}
+            </if>
+            <if test="projcode != null and projcode != ''">
+                and projcode = #{projcode}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>

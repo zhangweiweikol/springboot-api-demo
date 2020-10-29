@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link th:href="@{/js/jquery.mobile-1.4.5.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mobile-1.4.5.min.js}"></script>
+</head>
+<body>
+<!--表单数据绑定-->
+<div data-role="main" class="ui-content"  style="text-align: center" >
+    <div class="ui-field-contain">
+        <input id="name" type="text" th:value="${user.username}">
+    </div>
+    <div class="ui-field-contain">
+        <input id="password" type="password" th:value="${user.password}">
+    </div>
+    <div data-role="main" class="ui-content" >
+        <input type="button" class="saveBtn" value="签&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到" >
+    </div>
+    <div class="ui-field-contain">
+        <input id="name1" type="text">
+    </div>
+    <div class="ui-field-contain">
+        <input id="password1" type="password">
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+$(function(){
+    var ctxPath = '[[@{/}]]';
+
+    $(".saveBtn").click(function(){
+        $.ajax({
+            url: ctxPath + '/index/save',
+            data: JSON.stringify({
+                username: $('#name').val(),
+                password: $('#password').val()
+            }),
+            type: 'POST',
+            dataType: "json",
+            contentType: "application/json",
+            success: function(res, textStatus, XMLHttpRequest) {
+                if (res.code == '200') {
+                    var result = res.data;
+                    $("#name1").val(result.username);
+                    $("#password1").val(result.password);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                popUp("操作失败！请重试")
+            }
+        });
+    })
+})
+</script>
+
+</html>
