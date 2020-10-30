@@ -54,12 +54,3 @@ mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mapper/**/*.xml
   type-handlers-package: com.tenmao.handler
-
-
-
-powerjob:
-  worker:
-    akka-port: 27777
-    app-name: powerjob-agent-test
-    server-address: 192.168.115.100:7700
-    store-strategy: disk
