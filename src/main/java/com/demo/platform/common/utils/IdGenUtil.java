@@ -27,8 +27,7 @@ public class IdGenUtil {
 	         }
 	     }
 	    return str;  
-	} 
-	
+	}
 	
 	public static String getRandomNumr(){
 		return new Date().getTime()+""+(int)((Math.random()*9+1)*1000);

@@ -14,7 +14,6 @@ import java.util.UUID;
 @Component
 public class OkHttpManager {
 
-
     //MEDIA_TYPE <==> Content-Type
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -23,10 +22,8 @@ public class OkHttpManager {
     // 只能使用最原始的方式，读取输入流来获取。
     private static final MediaType MEDIA_TYPE_TEXT = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
-
     @Autowired
     OkHttpClient okhttpClient;
-
 
     public String sendByGetUrl(String url) throws Exception {
         String result;
@@ -44,7 +41,6 @@ public class OkHttpManager {
         }
         return result;
     }
-
 
     public String sendByPostJson(String url, String json) throws Exception {
         String reStr = null;
@@ -65,8 +61,6 @@ public class OkHttpManager {
         return reStr;
     }
 
-
-
     public String sendByPostMap(String url, Map<String, String> params) throws Exception {
         String result;
         StringBuilder content = new StringBuilder();
@@ -78,7 +72,6 @@ public class OkHttpManager {
                 content.append("&");
             }
         }
-
         RequestBody requestBody = RequestBody.create(content.toString(), MEDIA_TYPE_TEXT);
         Request request = new Request.Builder().url(url).post(requestBody).build();
         Response response = null;
@@ -94,9 +87,7 @@ public class OkHttpManager {
         return result;
     }
 
-
-
-    public  ResponseBody upload(String url, String filePath, String fileName) throws Exception {
+    public ResponseBody upload(String url, String filePath, String fileName) throws Exception {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file",
@@ -104,13 +95,11 @@ public class OkHttpManager {
                         RequestBody.create(MediaType.parse("multipart/form-data"),
                         new File(filePath)))
                 .build();
-
         Request request = new Request.Builder()
                 .header("Authorization", "Client-ID " + UUID.randomUUID())
                 .url(url)
                 .post(requestBody)
                 .build();
-
         Response response = okhttpClient.newCall(request).execute();
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected code " + response);
@@ -118,18 +107,15 @@ public class OkHttpManager {
         return response.body();
     }
 
-
-
     public String doDelete(String url, Map<String, String> params, Map<String, String> headerParam) throws Exception {
-        FormBody formBody =addParamToBuilder(params);
+        FormBody formBody = addParamToBuilder(params);
         Request.Builder request = buildHeader(headerParam);
         Request buildRequest = request.delete(formBody).url(url).build();
         return execute(buildRequest);
     }
 
-
-    public String doPutJson(String url, Map<String,String> headermap, String json) throws Exception {
-        return exectePut(url, json,headermap, MEDIA_TYPE_JSON);
+    public String doPutJson(String url, Map<String, String> headermap, String json) throws Exception {
+        return exectePut(url, json, headermap, MEDIA_TYPE_JSON);
     }
 
     public String exectePut(String url, String data, Map<String, String> headerMap, MediaType contentType) throws Exception {
@@ -139,7 +125,6 @@ public class OkHttpManager {
         return execute(request);
     }
 
-
     public String doPut(String url, Map<String, String> params, Map<String, String> headerParam) throws Exception {
         FormBody formBody = addParamToBuilder(params);
         Request.Builder request = buildHeader(headerParam);
@@ -147,18 +132,7 @@ public class OkHttpManager {
         return execute(buildRequest);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    private FormBody addParamToBuilder(Map<String, String> params){
+    private FormBody addParamToBuilder(Map<String, String> params) {
         FormBody.Builder builder = new FormBody.Builder();
         if (params != null && params.keySet().size() > 0) {
             for (String key : params.keySet()) {
@@ -168,7 +142,7 @@ public class OkHttpManager {
         return builder.build();
     }
 
-    private  Request.Builder buildHeader(Map<String, String> headerParam){
+    private Request.Builder buildHeader(Map<String, String> headerParam) {
         Request.Builder request = new Request.Builder();
         if (!Objects.isNull(headerParam) && headerParam.size() > 0) {
             for (Map.Entry<String, String> entry : headerParam.entrySet()) {
@@ -177,7 +151,6 @@ public class OkHttpManager {
         }
         return request;
     }
-
 
     private String execute(Request request) throws Exception {
         Response response = null;
@@ -196,5 +169,4 @@ public class OkHttpManager {
         }
         return "";
     }
-
 }

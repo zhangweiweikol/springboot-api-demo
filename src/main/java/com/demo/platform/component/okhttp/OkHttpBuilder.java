@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
  * 自定义Ok http 构建类
  */
 public class OkHttpBuilder {
+
     private OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
     /**
@@ -49,9 +50,5 @@ public class OkHttpBuilder {
 
     public void setConnectTimeout(long connectTimeout) {
         this.connectTimeout = connectTimeout;
-    }
-
-    public void test(String s) {
-        System.out.println(s);
     }
 }
