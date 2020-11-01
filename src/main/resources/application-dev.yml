@@ -39,9 +39,26 @@ spring:
     cache: false  #是否使用缓存
     mode: HTML  #严格的HTML语法模式
     suffix: .html  #后缀名
-
-
-
+  main:
+    allow-bean-definition-overriding: true
+  elasticjob:
+    #注册中心配置
+    zookeeper:
+      server-lists: 192.168.0.205:2181
+      namespace: dd-job01
+    #简单作业配置
+    simples:
+      #spring简单作业示例配置
+      spring-simple-job:
+        #配置简单作业，必须实现com.dangdang.ddframe.job.api.simple.SimpleJob
+        job-class: com.demo.modules.bussiness.job.MyJob
+        cron: 0/2 * * * * ?
+        sharding-total-count: 3
+        sharding-item-parameters: 0=Beijing,1=Shanghai,2=Guangzhou
+        #配置监听器
+        listener:
+          #配置每台作业节点均执行的监听，必须实现com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener
+          listener-class: com.demo.modules.bussiness.job.JobListener
 
 management:
   health:
@@ -54,3 +71,13 @@ mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mapper/**/*.xml
   type-handlers-package: com.tenmao.handler
+
+
+# zookeeper集群
+elaticjob:
+  zookeeper:
+    server-lists: 192.168.0.205:2181
+    namespace: dd-job
+
+test:
+  name: 张三

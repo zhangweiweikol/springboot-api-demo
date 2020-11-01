@@ -7,7 +7,6 @@
 
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
