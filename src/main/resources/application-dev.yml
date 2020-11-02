@@ -44,7 +44,7 @@ spring:
   elasticjob:
     #注册中心配置
     zookeeper:
-      server-lists: 192.168.0.205:2181
+      server-lists: 192.168.115.205:2181
       namespace: dd-job01
     #简单作业配置
     simples:

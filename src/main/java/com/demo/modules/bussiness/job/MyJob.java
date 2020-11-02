@@ -8,9 +8,12 @@ public class MyJob implements com.dangdang.ddframe.job.api.simple.SimpleJob {
 
     @Override
     public void execute(final ShardingContext shardingContext) {
+        int totalCount = shardingContext.getShardingTotalCount();
+        int item = shardingContext.getShardingItem();
+
         System.out.println("===================================================");
         System.out.println(String.format("Item: %s | Time: %s | Thread: %s | %s",
-                shardingContext.getShardingItem(), new SimpleDateFormat("HH:mm:ss").format(new Date()),
+                item, new SimpleDateFormat("HH:mm:ss").format(new Date()),
                 Thread.currentThread().getId(), "SIMPLE"));
         System.out.println("===================================================");
 

@@ -6,6 +6,9 @@ import com.demo.platform.component.reids.RedisCacheManager;
 import com.demo.platform.component.okhttp.OkHttpManager;
 import com.demo.modules.bussiness.entity.ApiBuildingWebsite;
 import com.demo.modules.bussiness.service.ApiBuildingWebsiteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ import java.util.List;
 @Controller
 @RequestMapping("apiBuildingWebsite")
 public class ApiBuildingWebsiteController {
+
+    private static Logger logger = LoggerFactory.getLogger(ApiBuildingWebsiteController.class);
+
     /**
      * 服务对象
      */
@@ -35,6 +41,9 @@ public class ApiBuildingWebsiteController {
     @Resource
     RedisCacheManager redisCacheManager;
 
+    @Value("${test.name}")
+    private String name;
+
     /**
      * 通过条件查询数据
      *
@@ -43,6 +52,7 @@ public class ApiBuildingWebsiteController {
     @GetMapping("queryAll")
     @ResponseBody
     public ResponeData<List<ApiBuildingWebsite>> queryAll() throws Exception {
+        logger.info(name);
         List<ApiBuildingWebsite> list = this.apiBuildingWebsiteService.queryAll();
         return new ResponeData<>(ResultEnum.SUCCESS, list);
     }
