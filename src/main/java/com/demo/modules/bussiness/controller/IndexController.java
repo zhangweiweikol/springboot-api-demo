@@ -49,7 +49,7 @@ public class IndexController {
     @ResponseBody
     public String test() {
         TimeInterval ti = DateUtil.timer();
-        String jsonStr = "[{\"streetName\":\"津苑南路\",\"energySavingRateList\":[{\"strReportDate\":\"11111\",\"strTheoryElectDegree\":\"11111\",\"strRealElectDegree\":\"1111\",\"strSaveElectDegree\":\"1111\",\"strEnergySavingRate\":\"111\"}],\"abbreviate\":\"ses\"}]";
+        String jsonStr = "{\"pageNum\":1,\"pageSize\":100000,\"size\":0,\"startRow\":0,\"endRow\":0,\"total\":0,\"pages\":0,\"list\":[{\"hitchName\":\"1111\",\"lampPostCode\":\"111\",\"lampEffect\":\"111\",\"occurDate\":\"111\",\"organId\":\"111\"}],\"prePage\":0,\"nextPage\":0,\"isFirstPage\":true,\"isLastPage\":true,\"hasPreviousPage\":false,\"hasNextPage\":false,\"navigatePages\":8,\"navigatepageNums\":[],\"navigateFirstPage\":0,\"navigateLastPage\":0}";
         System.out.println(ti.interval());
         return jsonStr;
     }

@@ -4,21 +4,19 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.extra.mail.MailAccount;
 import cn.hutool.extra.mail.MailUtil;
+import cn.hutool.extra.qrcode.QrCodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +73,26 @@ public class HutoolUtil {
 
         String date01 = DateUtil.offsetDay(new Date(), 2).toString("yyyy-MM-dd HH:mm:ss");
         logger.info("当前日期加2天：" + date01);
+
+        logger.info("***********************************************");
+
+        String randomUUID = IdUtil.randomUUID();
+        String simpleUUID = IdUtil.simpleUUID();
+        logger.info("UUID：" + randomUUID);
+        logger.info("UUID：" + simpleUUID);
+
+        Snowflake snowflake = IdUtil.createSnowflake(1, 1);
+        String snowflakeId = snowflake.nextIdStr();
+        logger.info("snowflakeId：" + snowflakeId);
+
+        logger.info("***********************************************");
+        // 生成二维码
+        QrCodeUtil.generate("nihao你好", 300,300, FileUtil.file("d:/qrcode.jpg"));
+
+        logger.info("***********************************************");
+
+
+
 
 
 
