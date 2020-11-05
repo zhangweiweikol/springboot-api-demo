@@ -49,7 +49,7 @@ public class IndexController {
     @ResponseBody
     public String test() {
         TimeInterval ti = DateUtil.timer();
-        String jsonStr = "{\"pageNum\":1,\"pageSize\":100000,\"size\":0,\"startRow\":0,\"endRow\":0,\"total\":0,\"pages\":0,\"list\":[{\"hitchName\":\"1111\",\"lampPostCode\":\"111\",\"lampEffect\":\"111\",\"occurDate\":\"111\",\"organId\":\"111\"}],\"prePage\":0,\"nextPage\":0,\"isFirstPage\":true,\"isLastPage\":true,\"hasPreviousPage\":false,\"hasNextPage\":false,\"navigatePages\":8,\"navigatepageNums\":[],\"navigateFirstPage\":0,\"navigateLastPage\":0}";
+        String jsonStr = "[{\"streetName\":\"津苑南路\",\"openRateList\":[{\"openRateId\":\"or202011041315\",\"reportDate\":\"2020-11-03\",\"reportType\":\"street\",\"reportKeyId\":\"st437410541734469632\",\"lampCount\":29,\"planOpenCount\":29,\"openCount\":28,\"closeCount\":1,\"nonCalcCount\":0,\"openRate\":0.9655,\"dateType\":\"D\",\"streetName\":\"津苑南路\",\"strReportDate\":\"11-03\",\"strOpenRate\":\"96.55%\",\"abbreviate\":\"or\"}],\"abbreviate\":\"sot\"},{\"streetName\":\"合计\",\"openRateList\":[{\"openRateId\":\"or202011041315\",\"reportDate\":\"2020-11-03\",\"reportType\":\"street\",\"reportKeyId\":\"st437410541734469632\",\"lampCount\":29,\"planOpenCount\":29,\"openCount\":28,\"closeCount\":1,\"nonCalcCount\":0,\"openRate\":0.9655,\"dateType\":\"D\",\"streetName\":\"津苑南路\",\"strReportDate\":\"11-03\",\"strOpenRate\":\"96.55%\",\"abbreviate\":\"or\"}],\"abbreviate\":\"sot\"}]";
         System.out.println(ti.interval());
         return jsonStr;
     }

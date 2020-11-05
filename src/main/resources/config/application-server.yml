@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    include: db,mybatis,reids,elasticjob,thymeleaf,custom
+
+
+
+server:
+  port: 80
+  servlet:
+    context-path: /zt
+  shutdown: graceful # 开启优雅停机，默认immediate是立即关机
+  undertow:
+    accesslog:
+      enabled: false # 是否打开 undertow 日志，默认为 false
+      dir: logs # 设置访问日志所在目录
+    io: 2 # 指定工作者线程的 I/0 线程数，默认为 2 或者 CPU 的个数
+    worker: 16 # 指定工作者线程个数，默认为 I/O 线程个数的 8 倍
+    max-http-post-size: 0 # 设置 HTTP POST 内容的最大长度，默认不做限制

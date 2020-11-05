@@ -1,0 +1,4 @@
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  type-handlers-package: com.tenmao.handler
