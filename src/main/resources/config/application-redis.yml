@@ -15,3 +15,6 @@ management:
   health:
     redis:
       enabled: false # 关闭redis连接健康检查
+
+
+

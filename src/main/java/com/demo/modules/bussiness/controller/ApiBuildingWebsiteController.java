@@ -6,8 +6,11 @@ import com.demo.platform.component.reids.RedisCacheManager;
 import com.demo.platform.component.okhttp.OkHttpManager;
 import com.demo.modules.bussiness.entity.ApiBuildingWebsite;
 import com.demo.modules.bussiness.service.ApiBuildingWebsiteService;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +44,9 @@ public class ApiBuildingWebsiteController {
     @Resource
     RedisCacheManager redisCacheManager;
 
+    @Autowired
+    RedissonClient redissonClient;
+
     @Value("${test.name}")
     private String name;
 
@@ -53,7 +59,20 @@ public class ApiBuildingWebsiteController {
     @ResponseBody
     public ResponeData<List<ApiBuildingWebsite>> queryAll() throws Exception {
         logger.info(name);
+
+        RLock rLock = redissonClient.getLock("test1");
+        rLock.lock();
+        try {
+            Thread.sleep(5000l);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         List<ApiBuildingWebsite> list = this.apiBuildingWebsiteService.queryAll();
+
+
+        rLock.unlock();
+
         return new ResponeData<>(ResultEnum.SUCCESS, list);
     }
 

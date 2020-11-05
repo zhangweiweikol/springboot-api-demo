@@ -15,8 +15,12 @@ import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.extra.mail.MailAccount;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
+import com.demo.modules.bussiness.entity.User;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.sound.midi.Soundbank;
 import java.util.Date;
 import java.util.List;
 
@@ -100,8 +104,13 @@ public class HutoolUtil {
         int i = 0;
 
 
-
-
+        String name = "aaaaa";
+        User user = new User();
+        user.setUsername(name);
+        new Thread(()->{
+            System.out.println(user.getUsername());
+            System.out.println(name);
+        }).start();
 
 
     }

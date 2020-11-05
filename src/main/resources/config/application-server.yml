@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: db,mybatis,reids,elasticjob,thymeleaf,custom
+    include: db,mybatis,reids,redisson,elasticjob,thymeleaf,custom
 
 
 
