@@ -10,7 +10,9 @@ springboot开发脚手架。
 　　使用thymeleaf模板做视图、<br>
 　　使用mybatis通用mapper、<br>
 　　引入okhttp、<br>
-　　引入elastic-job-lite<br>
+　　引入elastic-job-lite、<br>
+   集成分布式锁redisson、<br>
+   集成h2数据库<br>
 等等，方便开发时候使用。<br><br><br><br>
 
 
