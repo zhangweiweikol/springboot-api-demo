@@ -58,8 +58,6 @@ public class ApiBuildingWebsiteController {
     @GetMapping("queryAll")
     @ResponseBody
     public ResponeData<List<ApiBuildingWebsite>> queryAll() throws Exception {
-        logger.info(name);
-
         RLock rLock = redissonClient.getLock("test1");
         rLock.lock();
         try {
@@ -67,12 +65,8 @@ public class ApiBuildingWebsiteController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         List<ApiBuildingWebsite> list = this.apiBuildingWebsiteService.queryAll();
-
-
         rLock.unlock();
-
         return new ResponeData<>(ResultEnum.SUCCESS, list);
     }
 

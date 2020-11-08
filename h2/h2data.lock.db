@@ -1,6 +1,6 @@
 #FileLock
-#Thu Nov 05 19:23:54 CST 2020
+#Sat Nov 07 20:58:40 CST 2020
 hostName=DEEP-2019APDHYH
-id=17598260f5d799650807c777f147faf63578eafba4d
+id=175a2c9910f9e2bd4ffba7e76fa6cbb1afc0f2fc880
 method=file
-server=192.168.115.100\:57500
+server=192.168.115.100\:55702
