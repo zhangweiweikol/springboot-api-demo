@@ -103,3 +103,57 @@ public class ApiBuildingWebsiteController {
 
 }
 ```
+
+
+##elastic-job-lite：
+Elastic-Job-Lite是一个分布式调度解决方案，定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务。
+###1、pom.xml引入：
+```xml
+<dependency>
+    <groupId>com.github.xjzrc.spring.boot</groupId>
+    <artifactId>elastic-job-lite-spring-boot-starter</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
+###2、添加配置文件《application-elasticjob.yml》
+
+```
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  elasticjob:
+    #注册中心配置
+    zookeeper:
+      server-lists: 192.168.0.205:2181
+      namespace: dd-job01
+    #简单作业配置
+    simples:
+      #spring简单作业示例配置
+      spring-simple-job:
+        #配置简单作业，必须实现com.dangdang.ddframe.job.api.simple.SimpleJob
+        job-class: com.demo.modules.bussiness.job.MyJob
+        cron: 0/2 * * * * ?
+        sharding-total-count: 3
+        sharding-item-parameters: 0=Beijing,1=Shanghai,2=Guangzhou
+        #配置监听器
+        listener:
+          #配置每台作业节点均执行的监听，必须实现com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener
+          listener-class: com.demo.modules.bussiness.job.JobListener
+      #spring简单作业示例配置
+      spring-simple-job1:
+        #配置简单作业，必须实现com.dangdang.ddframe.job.api.simple.SimpleJob
+        job-class: com.demo.modules.bussiness.job.MyJob1
+        cron: 0/2 * * * * ?
+        sharding-total-count: 3
+        sharding-item-parameters: 0=Beijing,1=Shanghai,2=Guangzhou
+        #配置监听器
+        listener:
+          #配置每台作业节点均执行的监听，必须实现com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener
+          listener-class: com.demo.modules.bussiness.job.JobListener
+```
+
+spring-simple-job和spring-simple-job1 代表两个不同的任务。
+
+任务的分片需要代码里进行相应的处理，比如配置<br>
+sharding-total-count: 3
+即分成三片， 代码里比如查询一张表 id可以和3取余，结果为1的为一片，结果为2的为一片，结果为3的为一片。
