@@ -13,8 +13,6 @@ public class SpringbootApiDemoApplication {
         addClassPath += ",classpath:/config/*/";
         new SpringApplicationBuilder(SpringbootApiDemoApplication.class).properties("spring.config.name:application",
                 addClassPath).build().run(args);
-
-        // SpringApplication.run(SpringbootApiDemoApplication.class, args);
     }
 
 }
