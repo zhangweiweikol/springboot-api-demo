@@ -1,6 +1,7 @@
 package com.demo.platform.component.okhttp;
 
 import okhttp3.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,9 @@ public class OkHttpManager {
 
     public String sendByPostJson(String url, String json) throws Exception {
         String reStr = null;
+        if (StringUtils.isEmpty(json)) {
+            json = "{}";
+        }
         RequestBody body = RequestBody.create(json, MEDIA_TYPE_JSON);
         Request request = new Request.Builder()
                 .url(url)

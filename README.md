@@ -28,12 +28,12 @@ springboot开发脚手架。
 ```
 ###3、添加配置文件《application-redisson.yml》
 ###4、代码写法
+
 ```java
 package com.demo.modules.bussiness.controller;
 
 import com.demo.platform.common.enums.ResultEnum;
 import com.demo.platform.common.global.ResponeData;
-import com.demo.platform.component.reids.RedisCacheManager;
 import com.demo.platform.component.okhttp.OkHttpManager;
 import com.demo.modules.bussiness.entity.ApiBuildingWebsite;
 import com.demo.modules.bussiness.service.ApiBuildingWebsiteService;

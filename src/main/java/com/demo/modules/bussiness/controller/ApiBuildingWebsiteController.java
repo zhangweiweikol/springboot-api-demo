@@ -2,15 +2,11 @@ package com.demo.modules.bussiness.controller;
 
 import com.demo.platform.common.enums.ResultEnum;
 import com.demo.platform.common.global.ResponeData;
-import com.demo.platform.component.reids.RedisCacheManager;
 import com.demo.platform.component.okhttp.OkHttpManager;
 import com.demo.modules.bussiness.entity.ApiBuildingWebsite;
 import com.demo.modules.bussiness.service.ApiBuildingWebsiteService;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,11 +37,8 @@ public class ApiBuildingWebsiteController {
     @Resource
     OkHttpManager okHttpManager;
 
-    @Resource
-    RedisCacheManager redisCacheManager;
-
-    @Autowired
-    RedissonClient redissonClient;
+//    @Resource
+//    RedisCacheManager redisCacheManager;
 
     @Value("${test.name}")
     private String name;
@@ -58,15 +51,9 @@ public class ApiBuildingWebsiteController {
     @GetMapping("queryAll")
     @ResponseBody
     public ResponeData<List<ApiBuildingWebsite>> queryAll() throws Exception {
-        RLock rLock = redissonClient.getLock("test1");
-        rLock.lock();
-        try {
-            Thread.sleep(5000l);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        redisCacheManager.set("test", "1");
         List<ApiBuildingWebsite> list = this.apiBuildingWebsiteService.queryAll();
-        rLock.unlock();
+//        String test = (String)redisCacheManager.get("test");
         return new ResponeData<>(ResultEnum.SUCCESS, list);
     }
 
