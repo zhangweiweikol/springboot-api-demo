@@ -1,21 +1,21 @@
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/springboot-api-demo?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&failOverReadOnly=false
-#    driver-class-name: com.mysql.jdbc.Driver
-#    username: root
-#    password: 111111
-#  lifecycle:
-#    timeout-per-shutdown-phase: 60s # 设置缓冲期，最大等待时间
-
-
-
 spring:
   datasource:
-#    url: jdbc:h2:mem:test
-    url: jdbc:h2:file:./h2/h2data;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/springboot-api-demo?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 123456
-  h2:
-    console:
-      enabled: true #在浏览器中开启控制台
+    password: 111111
+  lifecycle:
+    timeout-per-shutdown-phase: 60s # 设置缓冲期，最大等待时间
+
+
+
+#spring:
+#  datasource:
+##    url: jdbc:h2:mem:test
+#    url: jdbc:h2:file:./h2/h2data;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+#    driver-class-name: org.h2.Driver
+#    username: root
+#    password: 123456
+#  h2:
+#    console:
+#      enabled: true #在浏览器中开启控制台
