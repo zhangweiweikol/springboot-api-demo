@@ -18,4 +18,13 @@ spring:
     password: 123456
   h2:
     console:
-      enabled: true #在浏览器中开启控制台
+      #在浏览器中开启控制台  http://localhost/zt/h2/
+      enabled: true
+      # h2 访问路径上下文
+      path: /h2
+      settings:
+        # 开启h2 console 跟踪 方便调试  默认 false
+        trace: true
+        # 允许console 远程访问 默认false
+        web-allow-others: true
+

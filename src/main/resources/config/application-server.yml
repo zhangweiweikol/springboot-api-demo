@@ -1,7 +1,7 @@
 spring:
   profiles:
     #include: db,mybatis,reids,redisson,elasticjob,thymeleaf,custom
-    include: thymeleaf,custom
+    include: db,thymeleaf,custom
 
 
 
