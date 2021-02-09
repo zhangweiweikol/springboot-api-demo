@@ -1,8 +1,8 @@
 package com.demo.modules.bussiness.controller;
 
+import com.demo.modules.api.service.MyClient;
 import com.demo.platform.common.enums.ResultEnum;
 import com.demo.platform.common.global.ResponeData;
-import com.demo.platform.component.okhttp.OkHttpManager;
 import com.demo.modules.bussiness.entity.ApiBuildingWebsite;
 import com.demo.modules.bussiness.service.ApiBuildingWebsiteService;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class ApiBuildingWebsiteController {
     private ApiBuildingWebsiteService apiBuildingWebsiteService;
 
     @Resource
-    OkHttpManager okHttpManager;
+    MyClient myClient;
 
 //    @Resource
 //    RedisCacheManager redisCacheManager;
@@ -52,8 +52,10 @@ public class ApiBuildingWebsiteController {
     @ResponseBody
     public ResponeData<List<ApiBuildingWebsite>> queryAll() throws Exception {
 //        redisCacheManager.set("test", "1");
-        List<ApiBuildingWebsite> list = this.apiBuildingWebsiteService.queryAll();
+        List<ApiBuildingWebsite> list = null; // this.apiBuildingWebsiteService.queryAll();
 //        String test = (String)redisCacheManager.get("test");
+
+        String result = myClient.helloForest();
         return new ResponeData<>(ResultEnum.SUCCESS, list);
     }
 
