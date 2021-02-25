@@ -164,7 +164,8 @@
             <version>1.2.4</version>
         </dependency>
 
-        <!-- okhttp -->
+        <!-- forest -->
+        <!-- https://gitee.com/dt_flys/forest -->
         <dependency>
             <groupId>com.dtflys.forest</groupId>
             <artifactId>spring-boot-starter-forest</artifactId>
@@ -204,6 +205,12 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>3.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>3.4.4</version>
         </dependency>
 
     </dependencies>
