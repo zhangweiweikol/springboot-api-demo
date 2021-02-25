@@ -1,4 +1,4 @@
-package com.demo.platform.component.webservice;
+package com.demo.platform.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import java.io.BufferedReader;
